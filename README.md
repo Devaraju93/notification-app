@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Insyd Notification System
 
-## Getting Started
+A real-time notification system for the Insyd social platform targeting the Architecture Industry. This proof-of-concept demonstrates core notification functionality while considering future scalability.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Frontend**: Next.js (React framework)
+- **Backend**: Node.js (JavaScript runtime)
+- **Database**: PostgreSQL via Prisma ORM
+- **Real-time Infrastructure**: Pusher
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Real-time notifications delivered via WebSockets
+- Simulation of different notification types (follows, comments, likes)
+- Persistent storage of notification history
+- Toast notifications for immediate user awareness
+- Chronological list view of all past notifications
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Setup Instructions
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment variables:
+   - `DATABASE_URL`: PostgreSQL connection string
+   - `PUSHER_ID`: Pusher application ID
+   - `PUSHER_SECRET`: Pusher application secret
+   - `NEXT_PUBLIC_PUSHER_KEY`: Pusher client-side key
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Generate Prisma client:
+   ```bash
+   npx prisma generate
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/components`: UI components including simulation buttons
+- `/lib`: Utility functions for Prisma and Pusher
+- `/actions`: Server actions for notification handling
+- `/app`: Next.js pages including the notification dashboard
+# notification-app
