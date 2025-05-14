@@ -87,6 +87,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -99,6 +102,11 @@ exports.Prisma.NotificationScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 
@@ -143,17 +151,17 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
+  "activeProvider": "postgresql",
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "file:./dev.db"
+        "value": "postgresql://notification-app_owner:npg_men8kv5iMrJp@ep-falling-boat-a45qbzas-pooler.us-east-1.aws.neon.tech/notification-app?sslmode=require"
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Notification {\n  id      Int    @id @default(autoincrement())\n  message String\n\n  createdAt DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "e8022669ef8d713b924bbd0bb4ba39a0325215766395a1330ec45a03e1484fcf",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Notification {\n  id      Int    @id @default(autoincrement())\n  message String\n\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "cfa653dfd44cc1438e82a733939b73332bde74f4f61a2336cfcdfbfccd452a1b",
   "copyEngine": true
 }
 
