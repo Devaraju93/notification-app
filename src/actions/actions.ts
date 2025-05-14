@@ -20,7 +20,6 @@ export async function simulateFollowing() {
   }
 }
 
-
 export async function simulateComment() {
   try {
     await prisma.notification.create({
@@ -54,13 +53,16 @@ export async function simulateLike() {
   }
 }
 
-
-export async function getNotifications(){
+export async function getNotifications() {
+  try {
     const notifications = await prisma.notification.findMany({
-        orderBy: {
-            createdAt: "desc"
-        }
-    })
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
-    return notifications
+    return notifications;
+  } catch (e) {
+    console.log(e);
+  }
 }
